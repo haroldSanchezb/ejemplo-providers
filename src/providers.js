@@ -21,7 +21,7 @@ const ModalProvider = ({ children }) => {
     setModalData({ id, payload });
   }, []);
 
-  const contextValue = useMemo(() => ({modalData, openModal}), [modalData, openModal])
+  const contextValue = useMemo(() => ({ modalData, openModal }), [modalData, openModal])
 
   return (
     <ModalDispatchContext.Provider value={contextValue.openModal}>
@@ -32,16 +32,8 @@ const ModalProvider = ({ children }) => {
   );
 };
 
-const useModal = () => {
-  const modalData = useContext(ModalContext);
+const useModal = () => useContext(ModalContext);
 
-  return modalData;
-};
-
-const useDispatchModal = () => {
-  const openModal = useContext(ModalDispatchContext);
-
-  return openModal;
-};
+const useDispatchModal = () => useContext(ModalDispatchContext);
 
 export { ModalProvider, useModal, useDispatchModal };
