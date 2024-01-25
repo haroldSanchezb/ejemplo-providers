@@ -1,0 +1,14 @@
+name: 'Hotfix Review'
+on:
+  pull_request:
+    branches:
+      - 'hotfix/**'
+jobs:
+  validate-reviewers:
+    runs-on: ubuntu-latest
+    name: Validate reviewers in pull request
+    steps:
+      - name: check out repository
+        uses: actions/checkout@v4
+      - name: Use Validate reviewers
+        uses: ./.github/actions/validate-reviewers

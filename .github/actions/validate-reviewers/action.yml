@@ -1,0 +1,18 @@
+name: 'Validate Reviewers'
+description: 'Check if the PR has a valid reviewer'
+author: 'Harold Sanchez B'
+inputs:
+  repo-token:
+    description: 'A token for the repo'
+    default: ${{ github.token }}
+    required: true
+  configuration-path:
+    description: 'A path for the valid reviewers'
+    default: './.github/actions/validate-reviewers/reviewers.yml'
+    required: true
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+branding:
+  icon: 'user-plus'
+  color: 'yellow'
