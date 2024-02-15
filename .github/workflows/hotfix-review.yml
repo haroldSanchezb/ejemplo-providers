@@ -7,9 +7,8 @@ jobs:
   validate-reviewers:
     runs-on: ubuntu-latest
     name: Validate reviewers in pull request
+    if: startsWith( github.head_ref, 'hotfix' )
     steps:
-      - name: prueba
-        run: echo ${{ github.head_ref }}
       - name: check out repository
         uses: actions/checkout@v4
       - name: Use Validate reviewers
