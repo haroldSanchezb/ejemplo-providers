@@ -54277,7 +54277,7 @@ async function run() {
       required: true,
     });
     const slackHook = core.getInput('slack-hook-url', {
-      required: true,
+      required: false,
     });
     const octokit = github.getOctokit(token);
     const reviewers = await getConfig(configPath);
