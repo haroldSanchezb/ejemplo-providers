@@ -9,7 +9,7 @@ jobs:
     name: Validate reviewers in pull request
     steps:
       - name: prueba
-        run: echo ${{ github.ref }}
+        run: echo ${{ github.head_ref }}
       - name: check out repository
         uses: actions/checkout@v4
       - name: Use Validate reviewers
