@@ -54276,9 +54276,6 @@ async function run() {
     const configPath = core.getInput('configuration-path', {
       required: true,
     });
-    const slackHook = core.getInput('slack-hook-url', {
-      required: false,
-    });
     const octokit = github.getOctokit(token);
     const reviewers = await getConfig(configPath);
     const service = new Service(octokit, github.context, reviewers);
