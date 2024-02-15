@@ -54326,10 +54326,6 @@ module.exports = class Service {
     if (!this.octokit) {
       throw new Error('whe have a issue with the octokit');
     }
-
-    if (!this.context.payload.pull_request) {
-      throw new Error('the webhook payload is not exist');
-    }
   }
 
   async listRequestedReviewers() {

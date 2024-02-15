@@ -1,12 +1,13 @@
 name: 'Hotfix Review'
 on:
-  push:
+  pull_request:
     branches:
-      - 'hotfix/**'
+      - main
 jobs:
   validate-reviewers:
     runs-on: ubuntu-latest
     name: Validate reviewers in pull request
+    if: startsWith( github.head_ref, 'hotfix' )
     steps:
       - name: check out repository
         uses: actions/checkout@v4
