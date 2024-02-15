@@ -54288,7 +54288,8 @@ async function run() {
     await service.validate();
 
     // Notify team
-    await tasks.notifyTeam(slackHook);
+    // await tasks.notifyTeam(slackHook);
+    console.log(JSON.stringify(github.context, null, 2));
 
     // Validate reviewers
     await tasks.validateReviewers();
