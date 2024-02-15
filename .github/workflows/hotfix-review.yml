@@ -1,8 +1,8 @@
 name: 'Hotfix Review'
 on:
-  push:
+  pull_request:
     branches:
-      - 'hotfix/**'
+      - main
 jobs:
   validate-reviewers:
     runs-on: ubuntu-latest
