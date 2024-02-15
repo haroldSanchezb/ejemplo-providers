@@ -10,16 +10,20 @@ async function run() {
     const configPath = core.getInput('configuration-path', {
       required: true,
     });
-
+    const slackHook = core.getInput('slack-hook-url', {
+      required: true,
+    });
     const octokit = github.getOctokit(token);
     const reviewers = await getConfig(configPath);
     const service = new Service(octokit, github.context, reviewers);
     const tasks = new Tasks(service);
 
-    console.log(JSON.stringify(github, undefined, 2));
-
     // Validate inputs
     await service.validate();
+
+    // Notify team
+    // await tasks.notifyTeam(slackHook);
+    console.log(JSON.stringify(github.context, null, 2));
 
     // Validate reviewers
     await tasks.validateReviewers();

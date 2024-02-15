@@ -27,6 +27,20 @@ module.exports = class Service {
 
   async listRequestedReviewers() {
     try {
+      const { data: { users } } = await this.octokit.rest.pulls.listRequestedReviewers({
+        repo: this.repo,
+        owner: this.owner,
+        pull_number: this.pullNumber,
+      });
+
+      return users;
+    } catch (error) {
+      throw new Error(`Error listing the requested reviewers: ${error.message}`);
+    }
+  }
+
+  async listReviews() {
+    try {
       const { data: reviewers } = await this.octokit.rest.pulls.listReviews({
         repo: this.repo,
         owner: this.owner,
@@ -35,7 +49,7 @@ module.exports = class Service {
 
       return reviewers;
     } catch (error) {
-      throw new Error(`Error listing the requested reviewers: ${error.message}`);
+      throw new Error(`Error listing the reviewers: ${error.message}`);
     }
   }
 
@@ -53,6 +67,18 @@ module.exports = class Service {
 
     } catch (error) {
       throw new Error(`Error creating the review: ${error.message}`);
+    }
+  }
+
+  async getUser() {
+    try {
+      const { data: user } = await this.octokit.rest.users.getByUsername({
+        username: _.get(this.context, 'payload.pull_request.user.login'),
+      });
+
+      return user;
+    } catch (error) {
+      throw new Error(`Error getting the user: ${error.message}`);
     }
   }
 

@@ -1,7 +1,8 @@
 name: 'Hotfix Review'
 on:
-  pull_request:
-    types: [opened, edited, synchronize, reopened]
+  push:
+    branches:
+      - 'hotfix/**'
 jobs:
   validate-reviewers:
     runs-on: ubuntu-latest
